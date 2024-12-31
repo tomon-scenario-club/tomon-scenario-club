@@ -29,7 +29,7 @@ const og_image = "";
       <div class="works-wrapper px-5 grid">
         {works.map((work: any) => (
           <div class="relative group aspect-video max-w-[445px] hover:cursor-pointer">
-            <a href={`works/detail/${work.id}`}>
+            <a href={`/detail/${work.id}`}>
               <img src={work.image.url} alt="映画のサムネイル" class="w-full h-full object-cover" />
               <div class="absolute text-base inset-0 bg-[#D9D9D9] bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col gap-[14px] items-center justify-center">
                 <p class="text-black">{work.title}</p>
