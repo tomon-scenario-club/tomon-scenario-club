@@ -5,6 +5,7 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://tomonshinaken.github.io',
+  base: '/tomon-scenario-club/',
   vite: {
     resolve: {
       alias: {
