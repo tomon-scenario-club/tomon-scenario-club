@@ -10,26 +10,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: checkout this repository using git
-        uses: actions/checkout@v4
-
-      - name: Test API request
-        run: |
-          curl -v -X GET "${{ secrets.PUBLIC_MICROCMS_API_URL }}" -H "Authorization: Bearer ${{ secrets.PUBLIC_MICROCMS_API_KEY }}"
-
-
-      - name: Install, build, and upload
-        uses: withastro/action@v1
-        with:
-          node-version: 20
-        env:
+    env:
           PUBLIC_MICROCMS_API_URL: ${{ secrets.PUBLIC_MICROCMS_API_URL }}
           PUBLIC_MICROCMS_API_URL_2: ${{ secrets.PUBLIC_MICROCMS_API_URL_2 }}
           PUBLIC_MICROCMS_API_URL_3: ${{ secrets.PUBLIC_MICROCMS_API_URL_3 }}
           PUBLIC_MICROCMS_API_KEY: ${{ secrets.PUBLIC_MICROCMS_API_KEY }}
           PUBLIC_MICROCMS_API_KEY_2: ${{ secrets.PUBLIC_MICROCMS_API_KEY_2 }}
           PUBLIC_MICROCMS_API_KEY_3: ${{ secrets.PUBLIC_MICROCMS_API_KEY_3 }}
+    steps:
+      - name: checkout this repository using git
+        uses: actions/checkout@v4
+
+      - name: Install, build, and upload
+        uses: withastro/action@v1
+        with:
+          node-version: 20
 
   deploy:
     needs: build
