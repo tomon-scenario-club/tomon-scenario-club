@@ -14,6 +14,12 @@ jobs:
       - name: checkout this repository using git
         uses: actions/checkout@v4
 
+      - name: Check environment variables
+        run: |
+          echo "PUBLIC_MICROCMS_API_URL: ${{ secrets.PUBLIC_MICROCMS_API_URL }}"
+          echo "PUBLIC_MICROCMS_API_URL_2: ${{ secrets.PUBLIC_MICROCMS_API_URL_2 }}"
+          echo "PUBLIC_MICROCMS_API_URL_3: ${{ secrets.PUBLIC_MICROCMS_API_URL_3 }}"
+
       - name: Install, build, and upload
         uses: withastro/action@v1
         with:
