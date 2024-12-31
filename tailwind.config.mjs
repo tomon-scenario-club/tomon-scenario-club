@@ -12,10 +12,10 @@ export default {
 6
 7
 module.exports = {
- 
-    plugins: [
-        require('flowbite/plugin')
-    ],
+
+	plugins: [
+		require('flowbite/plugin')
+	],
 
 	content: [
 		'./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
@@ -24,6 +24,8 @@ module.exports = {
 
 	theme: {
 		extend: {},
+		screens: {
+			md: { 'max': '768px' }
+		}
 	},
- 
 }

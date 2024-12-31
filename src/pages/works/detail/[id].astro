@@ -1,0 +1,80 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { jsFromatDate } from '@/pages/utils';
+import { fetchWorksContents, fetchWorksContentsById } from '@/pages/fetchWorks';
+const { params }: { params: { id: string } } = Astro;
+const work = await fetchWorksContentsById(params.id);
+
+export async function getStaticPaths() {
+  const works = await fetchWorksContents();
+  return works.map((work: any) => ({
+    params: { id: work.id },
+  }));
+}
+
+const title = "作品詳細 | 稲門シナリオ研究会";
+const description = "稲門シナリオ研究会が制作した映画の詳細です。";
+const og_image = "";
+---
+
+<Layout title={title} , description={description} og_image={og_image}>
+  <main class="px-5 box-content">
+    <!-- パンくずリスト -->
+    <nav class="md:mt-[26px] md:mb-[21px] md:mr-0 md:justify-start flex mt-[57px] mb-[107px] mr-[140px] justify-end" aria-label="Breadcrumb">
+      <ul class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+        <li class="inline-flex items-center">
+          <a href="/" class="md:text-xs inline-flex items-center leading-none text-xl text-white hover:border-b-2 border-white">
+            TOP
+          </a>
+        </li>
+        <li aria-current="page" class="li-current__breadcrumb !ml-5 before:!-left-6 md:before:!border-b md:before:!border-r">
+          <a href="/works" class="md:text-xs md:leading-7 inline-flex items-center leading-none text-xl text-white hover:border-b-2 border-white">
+            作品一覧
+          </a>
+        </li>
+        <li aria-current="page" class="li-current__breadcrumb md:before:!border-b md:before:!border-r">
+          <div class="flex items-center">
+            <span class="md:text-xs ms-4 text-xl text-white">作品詳細</span>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="max-w-[1100px] mx-auto">
+      <div class="overflow-hidden w-full max-h-[618px]">
+        <img src={work.image.url} alt='映画のサムネイル' class='thumbnail block w-full' />
+      </div>
+      <section id="work-info" class="md:mt-[25px] md:mb-[79px] mt-[123px] mb-[255px]">
+        <div class="md:flex-col md:gap-[10px] md:pb-5 md:mb-5 detail-hidden flex gap-[101px] items-baseline max-w-[1006px] border-b-2 border-[#D9D9D9] pb-1 mb-[46px]">
+          <h2 class="md:text-xl md:!tracking-normal text-4xl">{work.title}</h2>
+          <p class="md:text-xs text-xl">{`${jsFromatDate(work.workPublishedAt)}公開`}</p>
+        </div>
+  
+        <section class="md:mb-[22px] mb-[27px]">
+          <h3 class="md:text-base md:mb-[10px] text-4xl font-medium mb-[18px]">作品説明</h3>
+          <p class="md:text-sm text-xl max-w-[960px]">{work.description}</p>
+        </section>
+  
+        <section class="md:mb-[22px] mb-[27px]">
+          <h3 class="md:text-base md:mb-[10px] text-4xl font-medium mb-[18px]">監督</h3>
+          <p class="md:text-sm text-xl max-w-[960px]">{work.director}</p>
+        </section>
+  
+        <section class="md:mb-[22px] mb-[27px]">
+          <h3 class="md:text-base md:mb-[10px] text-4xl font-medium mb-[18px]">出演</h3>
+          <p class="md:text-sm text-xl max-w-[960px]">{work.performers}</p>
+        </section>
+  
+        <section>
+          <h3 class="md:text-base md:mb-[10px] text-4xl font-medium mb-[18px]">Youtube</h3>
+          <a href={work.youtubeUrl} class="md:text-sm text-xl underline [text-underline-offset:4px]">シナリオ研究会</a>
+        </section>
+      </section>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import { detail } from '@/pages/detail';
+  detail();
+</script>

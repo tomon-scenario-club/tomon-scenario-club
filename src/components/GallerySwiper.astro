@@ -1,0 +1,17 @@
+---
+import { fetchGalleryContents } from '@/pages/gallery';
+const galleryContents = await fetchGalleryContents();
+---
+
+<div id="gallery-swiper" class="swiper is-not-visible md:!mt-0">
+  <div class="swiper-wrapper">
+    {galleryContents.map((content: any) => (
+      <div class="swiper-slide"><img src={content.image.url} alt="ギャラリーの写真" /></div>
+    ))}
+  </div>
+
+  <div class="swiper-button-prev md:!hidden"></div>
+  <div class="swiper-button-next md:!hidden"></div>
+</div>
+
+  

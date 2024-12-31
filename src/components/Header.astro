@@ -1,7 +1,21 @@
 ---
-
+import { Image } from "astro:assets";
+import logo from '@/assets/images/logo/sina_logo.svg'
 ---
 
-<header>
-
+<header class="p-header">
+    <nav>
+        <div class="p-header_title">
+            <a href="/" class="p-header_title_logo">
+                <Image src={logo} alt="ロゴ" />
+                <p>TOMON SCENARIO CLUB</p>
+            </a>
+        </div>
+        <div class="p-header_link">
+            <a href="/works">WORKS</a>
+            <a href="/#about">ABOUT</a>
+            <a href="/#join">CONTACT</a>
+        </div>
+    </nav>
 </header>
+
