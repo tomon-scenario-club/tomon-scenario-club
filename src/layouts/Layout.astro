@@ -3,6 +3,7 @@ import "@/scss/styles.scss";
 import { Image } from "astro:assets";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import { GoogleAnalytics } from 'astro-google-analytics';
 // タイトル等をPropsとして受け取る。
 let { title = "", description = "", og_image = "" } = Astro.props;
 ---
@@ -32,6 +33,7 @@ let { title = "", description = "", og_image = "" } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@100..400&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <GoogleAnalytics id="G-HV0J7R83XX" />
   </head>
   
   <body>
