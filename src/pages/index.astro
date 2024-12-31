@@ -21,6 +21,8 @@ import { fetchEventsContents } from '@/pages/fetchEvents';
 const eventsContents = await fetchEventsContents();
 import { fetchAboutContents } from '@/pages/fetchAbout';
 const aboutContents = await fetchAboutContents();
+import { fecthLineImage } from '@/pages/join';
+const lineImage = await fecthLineImage();
 
 const title = "稲門シナリオ研究会 | 早稲田大学映画研究サークル";
 const description = "早稲田大学の映画研究サークル。映画制作を中心に夏合宿やシナリオ講評会を行う。";
@@ -197,9 +199,14 @@ const og_image = "";
         <h2 class="md:text-xs md:tracking-widest is-not-visible join-title font-bold text-black text-left mb-3">入会方法</h2>
         <p class="md:text-xs is-not-visible text-xl">ご興味をお持ちいただけましたら、ぜひ新歓LINEグループへご参加ください。</p>
       </div>
-      <!-- TODO: 先方にラインのURLかQRを作成してもらう -->
-      <a href="#" class="md:w-[150px] md:text-2xl is-not-visible grid place-items-center mx-auto bg-[#1A1A1A] rounded-[10px] w-[270px] h-[58px] text-4xl">JOIN US</a>
+      <button id="open-btn" class="md:w-[150px] md:text-2xl is-not-visible grid place-items-center mx-auto bg-[#1A1A1A] rounded-[10px] w-[270px] h-[58px] text-4xl">JOIN US</button>
     </section>
+    <div id="popup" class="z-50 opacity-0 pointer-events-none fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center transition-opacity duration-300">
+      <div class="bg-white rounded-lg p-6 max-w-sm relative">
+        <button id="close-btn" class="absolute top-2 right-2 text-gray-600 hover:text-black">✖</button>
+        <img src={lineImage.image.url} alt="ポップアップ画像" class="w-full h-auto rounded" />
+      </div>
+    </div>
 		<!-- 入会方法　ここまで -->
 	</main>
   
@@ -225,6 +232,20 @@ const og_image = "";
     import { fetchInstagramPosts } from './instagram';
     fetchInstagramPosts();
 
+    const openBtn = document.getElementById('open-btn');
+    openBtn?.addEventListener('click', () => {
+      const popup = document.getElementById('popup');
+      popup?.classList.remove('opacity-0', 'pointer-events-none');
+      popup?.classList.add('opacity-100', 'pointer-events-auto');
+    })
+
+    const closeBtn = document.getElementById('close-btn');
+    closeBtn?.addEventListener('click', () => {
+      const popup = document.getElementById('popup');
+      popup?.classList.remove('opacity-100', 'pointer-events-auto');
+      popup?.classList.add('opacity-0', 'pointer-events-none');
+    })
+    
     // aboutのh3タグ(「SNS」)がaタグで動的にラップされてしまうので、そのaタグを削除する
     const unwrap = (target: any) => {
       while (target.firstChild) {
