@@ -6,6 +6,9 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: 'https://tomonshinaken.github.io',
   vite: {
+    optimizeDeps: {
+      include: ['gsap'],
+    },
     resolve: {
       alias: {
         "@": "/src"
