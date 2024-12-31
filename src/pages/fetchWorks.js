@@ -1,4 +1,6 @@
-export async function fetchWorksContents(apiUrl, apiKey) {
+const apiUrl = `${import.meta.env.PUBLIC_MICROCMS_API_URL_3}works`;
+const apiKey = import.meta.env.PUBLIC_MICROCMS_API_KEY_3;
+export async function fetchWorksContents() {
   try {
     const response = await fetch(`${apiUrl}?limit=100`, {
       headers: {
@@ -13,7 +15,7 @@ export async function fetchWorksContents(apiUrl, apiKey) {
   }
 }
 
-export async function fetchWorksContentsById(id, apiUrl, apiKey) {
+export async function fetchWorksContentsById(id) {
   try {
     const response = await fetch(`${apiUrl}/${id}`, {
       headers: {

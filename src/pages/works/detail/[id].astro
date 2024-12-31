@@ -3,14 +3,10 @@ import Layout from "@/layouts/Layout.astro";
 import { jsFromatDate } from '@/pages/utils';
 import { fetchWorksContents, fetchWorksContentsById } from '@/pages/fetchWorks';
 const { params }: { params: { id: string } } = Astro;
-const apiUrl = `${import.meta.env.PUBLIC_MICROCMS_API_URL_3}works`;
-const apiKey = import.meta.env.PUBLIC_MICROCMS_API_KEY_3;
-const work = await fetchWorksContentsById(params.id, apiUrl, apiKey);
+const work = await fetchWorksContentsById(params.id);
 
 export async function getStaticPaths() {
-  const apiUrl = `${import.meta.env.PUBLIC_MICROCMS_API_URL_3}works`;
-  const apiKey = import.meta.env.PUBLIC_MICROCMS_API_KEY_3;
-  const works = await fetchWorksContents(apiUrl, apiKey);
+  const works = await fetchWorksContents();
   return works.map((work: any) => ({
     params: { id: work.id },
   }));
