@@ -10,13 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PUBLIC_MICROCMS_API_URL: ${{ secrets.PUBLIC_MICROCMS_API_URL }}
-      PUBLIC_MICROCMS_API_URL_2: ${{ secrets.PUBLIC_MICROCMS_API_URL_2 }}
-      PUBLIC_MICROCMS_API_URL_3: ${{ secrets.PUBLIC_MICROCMS_API_URL_3 }}
-      PUBLIC_MICROCMS_API_KEY: ${{ secrets.PUBLIC_MICROCMS_API_KEY }}
-      PUBLIC_MICROCMS_API_KEY_2: ${{ secrets.PUBLIC_MICROCMS_API_KEY_2 }}
-      PUBLIC_MICROCMS_API_KEY_3: ${{ secrets.PUBLIC_MICROCMS_API_KEY_3 }}
     steps:
       - name: checkout this repository using git
         uses: actions/checkout@v4
@@ -25,6 +18,13 @@ jobs:
         uses: withastro/action@v1
         with:
           node-version: 20
+        env:
+          PUBLIC_MICROCMS_API_URL: ${{ secrets.PUBLIC_MICROCMS_API_URL }}
+          PUBLIC_MICROCMS_API_URL_2: ${{ secrets.PUBLIC_MICROCMS_API_URL_2 }}
+          PUBLIC_MICROCMS_API_URL_3: ${{ secrets.PUBLIC_MICROCMS_API_URL_3 }}
+          PUBLIC_MICROCMS_API_KEY: ${{ secrets.PUBLIC_MICROCMS_API_KEY }}
+          PUBLIC_MICROCMS_API_KEY_2: ${{ secrets.PUBLIC_MICROCMS_API_KEY_2 }}
+          PUBLIC_MICROCMS_API_KEY_3: ${{ secrets.PUBLIC_MICROCMS_API_KEY_3 }}
 
   deploy:
     needs: build
