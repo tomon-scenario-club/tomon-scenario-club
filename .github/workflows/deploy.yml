@@ -19,8 +19,12 @@ jobs:
         with:
           node-version: 20
         env:
-          MICROCMS_SERVICE_DOMAIN: ${{ secrets.MICROCMS_SERVICE_DOMAIN }}
-          MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
+          MICROCMS_SERVICE_DOMAIN_1: ${{ secrets.PUBLIC_MICROCMS_API_URL }}
+          MICROCMS_SERVICE_DOMAIN_2: ${{ secrets.PUBLIC_MICROCMS_API_URL_2 }}
+          MICROCMS_SERVICE_DOMAIN_3: ${{ secrets.PUBLIC_MICROCMS_API_URL_3 }}
+          MICROCMS_API_KEY_1: ${{ secrets.PUBLIC_MICROCMS_API_KEY }}
+          MICROCMS_API_KEY_2: ${{ secrets.PUBLIC_MICROCMS_API_KEY_2 }}
+          MICROCMS_API_KEY_3: ${{ secrets.PUBLIC_MICROCMS_API_KEY_3 }}
 
   deploy:
     needs: build
