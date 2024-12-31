@@ -16,7 +16,7 @@ jobs:
 
       - name: Test API request
         run: |
-          curl -X GET "${{ secrets.PUBLIC_MICROCMS_API_URL }}" -H "Authorization: Bearer ${{ secrets.PUBLIC_MICROCMS_API_KEY }}"
+          curl -v -X GET "${{ secrets.PUBLIC_MICROCMS_API_URL }}" -H "Authorization: Bearer ${{ secrets.PUBLIC_MICROCMS_API_KEY }}"
 
 
       - name: Install, build, and upload
