@@ -1,9 +1,7 @@
 name: Deploy
 on:
   repository_dispatch:
-    types:
-      - content_published
-      - content_deleted
+    types: [microcms]
 jobs:
   deploy:
     runs-on: ubuntu-latest
