@@ -1,7 +1,9 @@
 name: Deploy
 on:
   repository_dispatch:
-    types: [update]
+    types:
+      - content_published
+      - content_deleted
 jobs:
   deploy:
     runs-on: ubuntu-latest
