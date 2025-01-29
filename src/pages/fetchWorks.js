@@ -1,5 +1,5 @@
-const apiUrl = `${import.meta.env.PUBLIC_MICROCMS_API_URL_3}works`;
-const apiKey = import.meta.env.PUBLIC_MICROCMS_API_KEY_3;
+const apiUrl = `${process.env.PUBLIC_MICROCMS_API_URL_3}works`;
+const apiKey = process.env.PUBLIC_MICROCMS_API_KEY_3;
 export async function fetchWorksContents() {
   try {
     const response = await fetch(`${apiUrl}?limit=100`, {
