@@ -36,7 +36,7 @@ jobs:
         run: pnpm run build
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4  # ✅ 修正点
+        uses: actions/upload-artifact@v4
         with:
           name: github-pages
           path: dist
