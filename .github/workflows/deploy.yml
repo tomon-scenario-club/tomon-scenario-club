@@ -21,6 +21,12 @@ jobs:
       - name: checkout this repository using git
         uses: actions/checkout@v4
 
+      - name: Cache APT packages
+        uses: awalsh128/cache-apt-pkgs-action@v1.4.3
+        with:
+          packages: build-essential libc6-dev
+          version: 1.0
+
       - name: Install, build, and upload
         uses: withastro/action@v1
         with:
