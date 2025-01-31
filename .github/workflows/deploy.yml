@@ -18,13 +18,27 @@ jobs:
       PUBLIC_MICROCMS_API_KEY_2: ${{ secrets.PUBLIC_MICROCMS_API_KEY_2 }}
       PUBLIC_MICROCMS_API_KEY_3: ${{ secrets.PUBLIC_MICROCMS_API_KEY_3 }}
     steps:
-      - name: checkout this repository using git
+      - name: Checkout this repository
         uses: actions/checkout@v4
 
-      - name: Install, build, and upload
-        uses: withastro/action@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: |
+          corepack enable
+          pnpm install
+
+      - name: Build Astro project
+        run: pnpm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: dist
 
   deploy:
     needs: build
@@ -33,7 +47,7 @@ jobs:
       pages: write
       id-token: write
     environment:
-      name: ${{ github.ref_name }}
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
