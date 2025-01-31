@@ -21,12 +21,6 @@ jobs:
       - name: Checkout this repository
         uses: actions/checkout@v4
 
-      # - name: Cache APT packages
-      #   uses: awalsh128/cache-apt-pkgs-action@v1.4.3
-      #   with:
-      #     packages: build-essential libc6-dev pkg-config libssl-dev
-      #     version: 1.0
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -42,8 +36,9 @@ jobs:
         run: pnpm run build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-artifact@v4  # ✅ 修正点
         with:
+          name: github-pages
           path: dist
 
   deploy:
@@ -51,11 +46,3 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pages: write
-      id-token: write
-    environment:
-      name: ${{ github.ref_name }}
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
