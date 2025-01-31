@@ -32,9 +32,6 @@ jobs:
       - name: Build Astro project
         run: npm run build
 
-      - name: Check dist directory
-        run: ls -l dist || echo "dist directory not found"
-
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
