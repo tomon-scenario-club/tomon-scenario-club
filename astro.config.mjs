@@ -16,7 +16,7 @@ export default defineConfig({
   },
   build: {
     format: "preserve", // NOTE: 出力ファイルの設定
-    outDir: "dist"
+    outDir: "docs"
   },
   integrations: [tailwind()]
 });
