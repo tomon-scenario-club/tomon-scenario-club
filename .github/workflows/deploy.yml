@@ -1,5 +1,4 @@
 name: Deploy to GitHub Pages
-# REF: https://docs.astro.build/ja/guides/deploy/github/
 on:
   push:
     branches: [main]
@@ -25,15 +24,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: |
-          corepack enable
-          pnpm install
+        run: npm install
 
       - name: Build Astro project
-        run: pnpm run build
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -50,8 +47,10 @@ jobs:
       contents: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
@@ -59,5 +58,4 @@ jobs:
           path: dist
 
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v1
