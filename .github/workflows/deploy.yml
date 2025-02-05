@@ -32,14 +32,14 @@ jobs:
       - name: Build Astro project
         run: npm run build
 
-      - name: List docs directory
-        run: ls -l docs || echo "docs directory not found"
+      - name: List dist directory
+        run: ls -l dist || echo "dist directory not found"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: docs
+          path: dist
 
   deploy:
     needs: build
@@ -58,7 +58,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: github-pages
-          path: docs
+          path: dist
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
