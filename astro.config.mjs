@@ -7,6 +7,7 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: 'https://tomonshinaken.github.io',
   base: '/tomon-scenario-club/',
+  output: "static",
   vite: {
     resolve: {
       alias: {
@@ -15,7 +16,6 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: "./docs",
     format: "preserve" // NOTE: 出力ファイルの設定
   },
   integrations: [tailwind()]
