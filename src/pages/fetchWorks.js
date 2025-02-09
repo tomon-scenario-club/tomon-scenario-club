@@ -11,7 +11,7 @@ export async function fetchWorksContents() {
     return data.contents;
   } catch (error) {
     console.error(error);
-    return;
+    return [];
   }
 }
 
