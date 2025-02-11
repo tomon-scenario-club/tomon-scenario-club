@@ -1,6 +1,6 @@
-const apiUrl = `${import.meta.env.PUBLIC_MICROCMS_API_URL_3}works`;
-const apiKey = import.meta.env.PUBLIC_MICROCMS_API_KEY_3;
 export async function fetchWorksContents() {
+  const apiUrl = `${import.meta.env.PUBLIC_MICROCMS_API_URL_3}works`;
+  const apiKey = import.meta.env.PUBLIC_MICROCMS_API_KEY_3;
   try {
     const response = await fetch(`${apiUrl}?limit=100`, {
       headers: {
@@ -16,6 +16,8 @@ export async function fetchWorksContents() {
 }
 
 export async function fetchWorksContentsById(id) {
+  const apiUrl = `${import.meta.env.PUBLIC_MICROCMS_API_URL_3}works`;
+  const apiKey = import.meta.env.PUBLIC_MICROCMS_API_KEY_3;
   try {
     const response = await fetch(`${apiUrl}/${id}`, {
       headers: {
